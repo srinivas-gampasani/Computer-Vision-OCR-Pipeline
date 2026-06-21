@@ -1,0 +1,65 @@
+{
+  "test_run": "cv_ocr_pipeline_tests",
+  "total": 26,
+  "passed": 26,
+  "failed": 0,
+  "ocr_engine": "tesseract 5.3.4 (real binary, pytesseract wrapper)",
+  "categories": {
+    "ImagePreprocessor": 6,
+    "TesseractEngine": 7,
+    "DocumentSegmenter": 3,
+    "StructureExtractor": 4,
+    "OCRPipelineIntegration": 6
+  },
+  "real_extraction_stats_4_sample_documents": {
+    "patient_intake_form.png": {
+      "type": "form",
+      "confidence": 93.6,
+      "words": 86,
+      "kv_pairs": 16,
+      "pipeline_ms": 2538
+    },
+    "discharge_summary_2col.png": {
+      "type": "paragraph",
+      "confidence": 93.5,
+      "words": 175,
+      "columns_detected": 2,
+      "pipeline_ms": 3245
+    },
+    "medication_table.png": {
+      "type": "mixed",
+      "confidence": 91.0,
+      "words": 56,
+      "tables_detected": 1,
+      "pipeline_ms": 1971
+    },
+    "lab_results_low_quality_skewed.png": {
+      "type": "form",
+      "confidence": 82.9,
+      "words": 69,
+      "skew_corrected_degrees": 3.53,
+      "pipeline_ms": 1679
+    }
+  },
+  "average_confidence_across_4_docs": 90.25,
+  "bugs_found_and_fixed_during_development": [
+    {
+      "bug": "Default PSM 6 (single uniform block) performed badly on table layouts",
+      "measured_before": "32.65% confidence, 23 words found",
+      "measured_after": "91.0% confidence, 56 words found (PSM 3)",
+      "fix": "Changed default psm from 6 to 3 in TesseractEngine"
+    },
+    {
+      "bug": "Column detection counted background pixels instead of text pixels (double-inversion logic error)",
+      "measured_before": "2-column test document reported as 1 column",
+      "measured_after": "Correctly detects 2 columns at expected pixel ranges",
+      "fix": "Removed incorrect re-inversion in DocumentSegmenter.detect_columns"
+    },
+    {
+      "bug": "StructuredDocument.tables type mismatch caused multi-table serialization crash",
+      "measured_before": "IndexError/AttributeError when document had table regions",
+      "measured_after": "Tables correctly serialize as List[List[List[TableCell]]]",
+      "fix": "Corrected dataclass type annotation and to_dict() nesting"
+    }
+  ]
+}

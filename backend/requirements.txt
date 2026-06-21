@@ -1,0 +1,35 @@
+# ============================================================
+#  Computer Vision OCR Pipeline — Requirements
+# ============================================================
+
+# Core API
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.17
+pydantic==2.10.3
+pydantic-settings==2.7.0
+python-dotenv==1.0.1
+
+# Computer Vision / Image Processing
+opencv-python-headless==4.10.0.84
+numpy==1.26.4
+Pillow==11.0.0
+
+# OCR Engines
+pytesseract==0.3.13
+# Tesseract binary must be installed separately:
+#   Ubuntu/Debian: apt-get install tesseract-ocr
+#   macOS:         brew install tesseract
+#   Windows:       https://github.com/UB-Mannheim/tesseract/wiki
+
+# Optional: PaddleOCR (stronger on handwriting/curved text, heavier install)
+# paddleocr==2.9.1
+# paddlepaddle==2.6.2
+
+# Optional: ViT/LayoutLMv3 document layout model
+# transformers==4.46.3
+# torch==2.5.1
+
+# PDF support (multi-page document handling)
+pdf2image==1.17.0
+# Requires poppler-utils: apt-get install poppler-utils
