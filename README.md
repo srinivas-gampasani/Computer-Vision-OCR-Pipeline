@@ -266,4 +266,7 @@ Thresholding` · `CLAHE` · `Key-Value Extraction` · `Table Extraction` ·
 
 ---
 
-*Built by Srinivas Gampasani — AI & ML Engineering, Ascension Via Christi Health*
+
+
+**Built by Srinivas Gampasani | Data Scientist, Gen AI & ML Engineer | USA**  
+[LinkedIn](https://www.linkedin.com/in/srinivasgampasani/) · [GitHub](https://github.com/srinivas-gampasani)
